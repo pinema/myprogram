@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ckeditor测试</title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/common-layout.css}" rel="stylesheet"/>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+</head>
+<body>
+    <input id="name" type="hidden" th:value="${name}" />
+    <p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+    <div style="margin: 30px;">
+        <form>
+            <textarea name="editor1" id="editor1" rows="10" cols="80"
+                      placeholder="This is my textarea to be replaced with CKEditor.">
+            </textarea>
+        </form>
+    </div>
+
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/ckeditor/ckeditor.js}"></script>
+    <script th:src="@{/ckfinder/ckfinder.js}"></script>
+    <script th:src="@{/js/editor-trial.js}"></script>
+</body>
+</html>

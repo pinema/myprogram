@@ -1,0 +1,14 @@
+
+spring.thymeleaf.cache: false
+spring.thymeleaf.prefix: classpath:/templates/
+spring.thymeleaf.check-template-location: true
+spring.thymeleaf.suffix: .html
+spring.thymeleaf.encoding: UTF-8
+spring.thymeleaf.mode: HTML5
+
+server:
+  port: 88
+spring:
+  thymeleaf:
+    servlet:
+      content-type: text/html

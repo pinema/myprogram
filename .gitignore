@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.settings/
+.sts4-cache/
+.vscode/
+target/
+.classpath
+.project
+*.iml
+.gitignore

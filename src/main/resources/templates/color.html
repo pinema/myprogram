@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>color selector测试</title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/common-layout.css}" rel="stylesheet"/>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <link th:href="@{/css/color-selector.css}" rel="stylesheet"/>
+</head>
+<body>
+    <input id="name" type="hidden" th:value="${name}" />
+    <p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+    <div style="margin: 30px;">
+        <div id="color_select" style="box-sizing:unset"></div>
+    </div>
+
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/js/color-selector.js}"></script>
+</body>
+</html>

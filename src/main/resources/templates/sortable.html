@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI排序(Sortable)-放置占位符</title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <link th:href="@{/css/common-layout.css}" rel="stylesheet"/>
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <style>
+        #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+        html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+        .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+        .elemHidden {display: none;}
+    </style>
+    <script>
+        $(function() {
+            {
+                // let testdata = $("#stModelListData")[0].value;
+                // console.log(testdata);
+                let dataListStr = document.getElementById("stModelListData").value;
+                let dataList = JSON.parse(dataListStr);
+                let divList = ["item1", "item2", "item3", "item4", "item5", "item6", "item7"]
+                if(dataList !== undefined && 0 < dataList.length) {
+
+                    for(let divId = 0; divId < divList.length; divId ++) {
+                        for(let i = 0; i < dataList.length; i ++) {
+                            if(divList[divId] === dataList[i].elemId){
+                                if(dataList[i].disFlg === "0") {
+                                    document.getElementById(divList[divId]).style.setProperty("display", "none");
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            // 拖拽
+            $( "#sortable" ).sortable({
+                placeholder: "ui-state-highlight"
+                ,stop: function(event, ui) {
+                    let son = document.getElementById("div-sort").children;
+                    for(let num = 0; num < son.length; num ++) {
+                        let grandsons = son[num].children;
+                        console.log(grandsons[0].id);
+                    }
+
+                }
+            });
+            $( "#sortable" ).disableSelection();
+            $( "#div-sort" ).sortable({
+                placeholder: "ui-state-highlight"
+            });
+            $( "#div-sort" ).disableSelection();
+
+            // 布局保存
+            $("#component-sav").click(function () {
+
+                //组件 数组
+                let elementIdList = [];
+                // 获取组件信息
+                let son = document.getElementById("div-sort").children;
+                for(let num = 0; num < son.length; num ++) {
+                    // 组件信息
+                    let grandsons = son[num].children;
+                    // 组件ID
+                    let componentId = grandsons[0].id;
+
+                    // 组件 Model
+                    let elementId = {elemId:"", disFlg:"", info:""};
+                    // 设定组件ID
+                    elementId.elemId = componentId;
+                    if($("#" + componentId).is(":hidden")){
+                        // 组件隐藏
+                        elementId.disFlg = "0";
+                    } else {
+                        // 组件显示
+                        elementId.disFlg = "1";
+                    }
+
+                    // 添加组件
+                    elementIdList.push(elementId);
+                }
+
+                $.ajax({
+                        type: "POST",
+                        url: "/dataListSave",
+                        // data: {elementIdList: document.getElementById("stModelListData").value},
+                        data: {elementIdList: JSON.stringify(elementIdList)},
+                        // dataType: "json",
+			            // contentType: false,
+                        success: function(data){
+                            console.log(data);
+                        },
+                        error: function(){
+                            console.error("error");
+                        }
+                });
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<input id="name" type="hidden" th:value="${name}" />
+<input id="stModelList" type="hidden" th:value= "${stModelList}" />
+<input id="stModelListData" type="hidden" th:value= "${stModelList1}" />
+
+<p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+
+<button type="submit" id="component-sav" style="width: 100px; height: 50px;">test</button>
+<br/>
+<table th:each="i:${stModelList}">
+    <tr >
+        <td>元素Id</td>
+        <td th:text="${i.getElemId()}"></td>
+    </tr>
+    <tr >
+        <td>元素标识</td>
+        <td th:text="${i.getDisFlg()}"></td>
+    </tr>
+</table>
+<ul id="sortable">
+    <div th:each="stml : ${stModelList}">
+        <li id="item91" th:if="${stml.getElemId() eq 'item1' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 1</li>
+        <li id="item92" th:if="${stml.getElemId() eq 'item2' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 2</li>
+        <li id="item93" th:if="${stml.getElemId() eq 'item3' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 3</li>
+        <li id="item94" th:if="${stml.getElemId() eq 'item4' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 4</li>
+        <li id="item95" th:if="${stml.getElemId() eq 'item5' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 5</li>
+        <li id="item96" th:if="${stml.getElemId() eq 'item6' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 6</li>
+        <li id="item97" th:if="${stml.getElemId() eq 'item7' && stml.getDisFlg() eq '1'}" class="ui-state-default">Item 7</li>
+    </div>
+</ul>
+
+<div id="div-sort" class="div-sort-size">
+    <div class="div-foreach" draggable="false" th:each="stml : ${stModelList}">
+        <div id="item1" th:if="${stml.getElemId() eq 'item1' }" class="item-info">1.全面、较深入地掌握我们“产品”的功能、特色和优势并做到应用自如。</div>
+        <div id="item2" th:if="${stml.getElemId() eq 'item2' }" class="item-info">2.根据自己以前所了解的和从其他途径搜索到的信息，录入客户资料150家。</div>
+        <div id="item3" th:if="${stml.getElemId() eq 'item3' }" class="item-info">3.锁定有意向客户20家。</div>
+        <div id="item4" th:if="${stml.getElemId() eq 'item4' }" class="item-info">4.力争完成销售指标。</div>
+        <div id="item5" th:if="${stml.getElemId() eq 'item5' }" class="item-info">5.在总结和摸索中前进。</div>
+        <div id="item6" th:if="${stml.getElemId() eq 'item6' }" class="item-info">6.不断学习行业知识、产品知识，为客户带来实用介绍内容</div>
+        <div id="item7" th:if="${stml.getElemId() eq 'item7' }" class="item-info">7.先友后单：与客户发展良好友谊，转换销售员角色，处处为客户着想</div>
+    </div>
+</div>
+</body>
+</html>

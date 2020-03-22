@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>轮播图 carousel 测试</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+</head>
+<body>
+    <p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+
+    <div class="layui-carousel" id="test1">
+        <div carousel-item>
+          <div>条目1</div>
+          <div>条目2</div>
+          <div>条目3</div>
+          <div>条目4</div>
+          <div>条目5</div>
+        </div>
+      </div>
+      <!-- 条目中可以是任意内容，如：<img src=""> -->
+
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/carousel.js}"></script>
+</body>
+</html>
