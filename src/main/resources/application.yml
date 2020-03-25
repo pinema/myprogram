@@ -8,6 +8,8 @@ spring.thymeleaf.mode: HTML5
 
 server:
   port: 88
+  servlet:
+    context-path: /
 spring:
   thymeleaf:
     servlet:

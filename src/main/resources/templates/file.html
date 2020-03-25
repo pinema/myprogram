@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>文件上传管理</title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/file-upload.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="body-head">
+    <div class="btn-menu">
+        <input type="file" id="upload_file" name="upload_file" style="display: none">
+        <div id="select_btn" class="btn-select"><img class="select-img" th:src="@{/images/upload-2-fill.png}" /><span>选择</span></div>
+        <div id="upload_btn" class="btn-upload"><img class="upload-img" th:src="@{/images/upload-2-fill.png}" /><span>上传</span></div>
+        <div id="delete_btn" class="btn-delete"><img class="delete-img" th:src="@{/images/delete.png}" /><span>删除</span></div>
+    </div>
+    <div class="left-menu-panel">
+        <div class="ui-panel-inner">
+            <div class="panel-contents">
+                <ul class="ui-list-view">
+                    <li class="ui-li-has-alt">
+                        <a class="ui-btn">
+                            <span class="span-icon">文件</span>
+                        </a>
+                        <a class="ui-icon-arrow-r"></a>
+                    </li>
+                    <li class="ui-li-has-alt">
+                        <a class="ui-btn">
+                            <span class="span-icon">图片</span>
+                        </a>
+                        <a class="ui-icon-arrow-r"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="ui-panel-wrapper">
+        <div class="ui-content">
+            <div class="main-region">
+                <ul id="img_area" class="file-view">
+                    <li class="file-item" th:each="imageModel : ${imageModelList}">
+                        <a class="file-inner">
+                            <img class="ui-li-thumb" th:id="${imageModel.getImgId()}" th:src="@{${imageModel.getImgUrl()}}"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/file-upload.js}"></script>
+</body>
+</html>

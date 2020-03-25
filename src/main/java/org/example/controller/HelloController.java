@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.domain.ImageModel;
 import org.example.domain.SortableModel;
 import org.example.utils.JSONUtil;
 import org.slf4j.Logger;
@@ -9,11 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -128,14 +131,128 @@ public class HelloController {
         return "carousel";
     }
 
-
     /**
      * 测试 图片上传和文字编辑 editorTrial
      * @return
      */
     @RequestMapping(value = "/editorTrial",method = RequestMethod.GET)
     public String editorTrial(Model model) {
-        model.addAttribute("name", "Dear my heart!!!!!!!");
+        ImageModel imageModel = new ImageModel();
+        List<ImageModel> imageModelList = new ArrayList<ImageModel>();
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img001");
+        imageModel.setImgName("back.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/back.jpg");
+        imageModel.setImgSize("56.1KB");
+        imageModel.setUpDate("2020年3月24日 0:45 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img002");
+        imageModel.setImgName("girl.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/girl.jpg");
+        imageModel.setImgSize("207KB");
+        imageModel.setUpDate("2020年3月24日 1:20 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img003");
+        imageModel.setImgName("loginBack.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/loginBack.jpg");
+        imageModel.setImgSize("37.8KB");
+        imageModel.setUpDate("2020年3月24日 2:30 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img004");
+        imageModel.setImgName("profile.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/profile.jpg");
+        imageModel.setImgSize("79.2KB");
+        imageModel.setUpDate("2020年3月24日 4:50 上午");
+        imageModelList.add(imageModel);
+
+        model.addAttribute("imageModelList", imageModelList);
+        model.addAttribute("name", "Dear my heart editorTrial!!!!!!!");
         return "editorTrial";
     }
+
+    /**
+     * 通用上传请求
+     */
+    @PostMapping("/common/upload")
+    @ResponseBody
+    public Map uploadFile(MultipartFile file) throws Exception
+    {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("imgPath", "http://localhost:88/images/profile.jpg");
+        map.put("imgName", "ceshitest.jpg");
+        map.put("imgDate", "2020年3月25日 21:50 下午");
+        map.put("id", "img_test_one");
+        return  map;
+    }
+
+    /**
+     * 通用删除请求
+     */
+    @PostMapping("/common/delete")
+    @ResponseBody
+    public Map deleteFile(HttpServletRequest request) throws Exception
+    {
+        String imgId = request.getParameter("imgId");
+        String imgPath = request.getParameter("imgPath");
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("id", imgId);
+        map.put("imgPath", imgPath);
+        map.put("data", "success");
+        return  map;
+    }
+
+    /**
+     * 图片上传 file
+     * @return
+     */
+    @RequestMapping(value = "/file",method = RequestMethod.GET)
+    public String uploadFile(Model model) {
+        ImageModel imageModel = new ImageModel();
+        List<ImageModel> imageModelList = new ArrayList<ImageModel>();
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img001");
+        imageModel.setImgName("back.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/back.jpg");
+        imageModel.setImgSize("56.1KB");
+        imageModel.setUpDate("2020年3月24日 0:45 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img002");
+        imageModel.setImgName("girl.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/girl.jpg");
+        imageModel.setImgSize("207KB");
+        imageModel.setUpDate("2020年3月24日 1:20 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img003");
+        imageModel.setImgName("loginBack.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/loginBack.jpg");
+        imageModel.setImgSize("37.8KB");
+        imageModel.setUpDate("2020年3月24日 2:30 上午");
+        imageModelList.add(imageModel);
+
+        imageModel = new ImageModel();
+        imageModel.setImgId("img004");
+        imageModel.setImgName("profile.jpg");
+        imageModel.setImgUrl("http://localhost:88/images/profile.jpg");
+        imageModel.setImgSize("79.2KB");
+        imageModel.setUpDate("2020年3月24日 4:50 上午");
+        imageModelList.add(imageModel);
+
+        model.addAttribute("imageModelList", imageModelList);
+        model.addAttribute("name", "Dear my heart file upload!!!!!!!");
+        return "file";
+    }
+
 }

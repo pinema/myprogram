@@ -1,0 +1,222 @@
+ul, ol, dl, li, dt, dd, blockquote, pre, form, fieldset, table, th, td{padding:0;margin:0;}
+div,dl,dt,dd,h1,h2,h3,h4,h5,h6,ul,pre,form,fieldset,input,textarea,p,blockquote{margin:0;padding:0;}
+ol,li{margin:0;padding:0; list-style-type:none;}
+
+:root {
+    --main-bg-color: #f7f8f9;
+    --border-color: #d7dcdf
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.body-head{
+
+    background-color: #FFFFFF;
+}
+
+.btn-menu{
+    padding: 5px 0 5px 10px;
+    border: 1px solid;
+    border-color: var(--border-color);
+    background-color: var(--main-bg-color);
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    z-index: 1000;
+    min-width: 160px;
+}
+
+.select-img, .upload-img, .delete-img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.btn-select, .btn-upload, .btn-delete{
+    background-color: #FFFFFF;
+    border: 1px solid;
+    border-color: var(--border-color);
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.btn-select:hover, .btn-upload:hover, .btn-delete:hover{
+    cursor: pointer;
+}
+
+.left-menu-panel{
+    background-color: var(--main-bg-color);
+    z-index: 999;
+    position: fixed;
+    overflow: hidden;
+    max-height: 100%;
+    display: block;
+}
+
+.ui-panel-inner{
+    width: 270px;
+    padding-top: calc(50px);
+}
+
+.panel-contents{
+    overflow: auto;
+    border-color: #d7dcdf;
+    height: calc(100vh - 50px);
+    min-height: 200px;
+}
+
+.ui-list-view{
+    position: relative;
+}
+
+.ui-li-has-alt{
+    border-bottom: 1px solid #d7dcdf;
+    line-height: 43px;
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ui-btn{
+    display: block;
+    position: relative;
+    text-align: left;
+    white-space: nowrap;
+    padding-left: 50px;
+}
+
+.ui-btn:hover{
+    cursor: pointer;
+}
+
+.span-icon{
+    position: relative;
+    display: inline-block;
+}
+
+.span-icon:before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 22px;
+    top: 50%;
+    left: -30px;
+    margin-top: -11px;
+    background-image: url("../images/folder.png");
+    background-position: 0 center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.ui-icon-arrow-r:after{
+    content: "";
+    /*position: absolute;*/
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url("../images/arrow_right.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    /*right: 10%;*/
+    /*top: 8px;*/
+    margin-top: 12px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.ui-icon-arrow-r:hover{
+    cursor: pointer;
+}
+
+.ui-icon-arrow-d:after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url("../images/arrow_down.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    left: 50%;
+    top: 8px;
+    cursor: pointer;
+}
+
+.ui-icon-arrow-d:after{}
+
+.ui-panel-wrapper {
+    position: relative;
+    min-height: inherit;
+    border: 0;
+    overflow-x: hidden;
+    z-index: 999;
+    right: -270px;
+    top: 50px;
+    width: calc(100% - 270px);
+}
+
+.ui-content{
+    position: relative;
+    overflow: visible;
+    overflow-x: hidden;
+    border-width: 0;
+}
+
+.file-view{
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+.file-item{
+    width: 150px;
+    height: 150px;
+    position: relative;
+    float: left;
+    margin: 5px;
+    border-width: 0;
+    background-color: transparent;
+    overflow: visible;
+}
+
+.file-inner{
+    border: 3px solid transparent;
+    background-color: #f7f8f9;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    color: #373a3c;
+    text-align: left;
+    position: absolute;
+}
+
+.file-inner:hover{
+    cursor: pointer;
+}
+
+.file-inner.is_select{
+    border: 3px solid #0a90eb;
+}
+
+.ui-li-thumb{
+    /*position: absolute;*/
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: 0;
+    max-width: 100%;
+    /*transform: translate(-50%, -50%);*/
+    max-height: 100%;
+    height: auto;
+}
+

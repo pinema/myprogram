@@ -7,16 +7,44 @@
 
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/common-layout.css}" rel="stylesheet"/>
+    <link th:href="@{/css/editor_trial.css}" rel="stylesheet"/>
     <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap-fileinput/css/fileinput.css}" />
 </head>
 <body>
     <input id="name" type="hidden" th:value="${name}" />
     <p th:text="'Hello！, ' + ${name} + '!'" >3333</p>
+
+    <!--上传弹框 -->
+    <div id="trig" class="upload_layout">
+        <input type="file" id="file" name="file" style="display: none">
+        <div id="upcontainer" class="up-container">
+            <div class="btn_layout">
+                <input id="btn_addFile" type="button" value="添加文件"/>
+            </div>
+            <button id="confirm" type="button" style="margin-top:5px;margin-left:42px;">确定</button>
+            <button id="close" type="button" style="margin-top:5px;">关闭</button>
+
+            <div class="display-img">
+                <div class="img-content" id="image_position">
+                    <ul>
+                        <li class="img-li" th:each="imageModel : ${imageModelList}">
+                            <a class="img-a">
+                                <img class="img-style" th:id="${imageModel.getImgId()}" th:src="@{${imageModel.getImgUrl()}}"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div style="margin: 30px;">
         <form>
             <textarea name="editor1" id="editor1" rows="10" cols="80"
                       placeholder="This is my textarea to be replaced with CKEditor.">
             </textarea>
+            <button id="commit" type="button" οnclick="sub()" class="btn btn-primary" style="float:right;margin-right:50px;margin-top:20px;">提交</button>
         </form>
     </div>
 
@@ -26,5 +54,8 @@
     <script th:src="@{/ckeditor/ckeditor.js}"></script>
     <script th:src="@{/ckfinder/static/ckfinder.js}"></script>
     <script th:src="@{/js/editor-trial.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-fileinput/js/fileinput.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-fileinput/js/locales/zh.js}"></script>
+    <script th:src="@{/js/bootstrap_fileinput.js}"></script>
 </body>
 </html>
