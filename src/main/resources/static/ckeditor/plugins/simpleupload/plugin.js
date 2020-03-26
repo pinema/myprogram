@@ -2,8 +2,8 @@
     var a = {
             exec: function (editor) {
                 console.log("自定义");
-                //调用jsp中的函数弹出上传框，
-                // show();
+                //调用js中的函数弹出上传框，
+                showDialog();
                 return "asdfaf";
             }
         },

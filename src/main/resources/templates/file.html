@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="body-head">
+<div id="fileIframe" class="body-head">
     <div class="btn-menu">
         <input type="file" id="upload_file" name="upload_file" style="display: none">
         <div id="select_btn" class="btn-select"><img class="select-img" th:src="@{/images/upload-2-fill.png}" /><span>选择</span></div>
@@ -43,7 +43,11 @@
                 <ul id="img_area" class="file-view">
                     <li class="file-item" th:each="imageModel : ${imageModelList}">
                         <a class="file-inner">
-                            <img class="ui-li-thumb" th:id="${imageModel.getImgId()}" th:src="@{${imageModel.getImgUrl()}}"/>
+                            <div class="flex-center"><img class="ui-li-thumb" th:id="${imageModel.getImgId()}" th:src="@{${imageModel.getImgUrl()}}"/></div>
+                            <div class="file-desc">
+                                <div class="flex-left"><h2 class="img-title" th:text="${imageModel.getImgName()}"></h2></div>
+                                <div class="flex-left"><p class="img-date" th:text="${imageModel.getUpDate()}"></p></div>
+                            </div>
                         </a>
                     </li>
                 </ul>
